@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "bitmovin-analytics": "^2.24.1"
+  }
+}
