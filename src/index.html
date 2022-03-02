@@ -1,48 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="tomquinn" />
-    <meta name="keywords" content="azure media services, video-analytics, azure application insights" />
-    <title>Azure Media Player - Video Analytics</title>
-    <script type="text/javascript">
-        var appInsights=window.appInsights||function(config){
-        function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
-        }({
-            //YOUR INSTRUMENTATION KEY HERE
-            instrumentationKey:"f8b50a9a-29e1-490d-b89c-18239e46081c"
-        });
-        window.appInsights=appInsights;
-        appInsights.trackPageView();
-    </script>
-    
-    <!--AMP Scripts: replace "latest" with a version number from http://aka.ms/ampchangelog -->
-    <link href="//amp.azure.net/libs/amp/latest/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
-    <script src="//amp.azure.net/libs/amp/latest/azuremediaplayer.min.js"></script>
-    
-    <!--Add the amp-appInsights plugin script -->
-    <script src="amp-appInsights.min.js"></script>
-    <script type="text/javascript">
-        var myOptions = {
-            "nativeControlsForTouch": false,
-            autoplay: true,
-            controls: true,
-            width: "640",
-            height: "400",
-            plugins: {
-                appInsights: {
-                    //add additonal plugin options here
-                    'debug': true
-                }
-            }
-        };
-        var myPlayer = amp("azuremediaplayer", myOptions);
-        myPlayer.src([{ src: "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest", type: "application/vnd.ms-sstr+xml" }, ]);
-    </script>
-    
+    <head>
+        <title>AMP Player with Bitmovin Analytics</title>
+        <link href="https://amp.azure.net/libs/amp/latest/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
+        <script src= "https://amp.azure.net/libs/amp/latest/azuremediaplayer.min.js"></script>
     </head>
     <body>
-    <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" data-setup='{}' tabindex="0"></video>
+      <script type="module" src="https://cdn.bitmovin.com/analytics/web/2/bitmovinanalytics.min.js"></script>
+      <script type="text/javascript">
+          import { HTMLVideoElementAdapter } from 'bitmovin-analytics';
+          const analyticsConfig = {
+              key: 'EDB3FF79-9BB3-4ECF-8DB5-3917C56D9E1D',
+              videoId: 'Learn TV',
+              title: 'Microsoft Learn TV'
+          };
+
+          var video = document.getElementById('vid1');
+          new bitmovin.analytics.adapters.HTMLVideoElementAdapter(analyticsConfig, video);
+      </script>
+      <h1>AMP Player with Bitmovin Analytics</h1>
+      <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="640" height="400" poster="poster.jpg" data-setup='{"techOrder": ["azureHtml5JS", "flashSS", "html5FairPlayHLS","silverlightSS", "html5"], "nativeControlsForTouch": false}'>
+          <source src="https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest" type="application/vnd.ms-sstr+xml" />
+          <p class="amp-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+          </p>
+      </video>
     </body>
 </html>
