@@ -23,6 +23,23 @@
     
     <!--Add the amp-appInsights plugin script -->
     <script src="amp-appInsights.min.js"></script>
+    <script type="text/javascript">
+        var myOptions = {
+            "nativeControlsForTouch": false,
+            autoplay: true,
+            controls: true,
+            width: "640",
+            height: "400",
+            plugins: {
+                appInsights: {
+                    //add additonal plugin options here
+                    'debug': true
+                }
+            }
+        };
+        var myPlayer = amp("azuremediaplayer", myOptions);
+        myPlayer.src([{ src: "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest", type: "application/vnd.ms-sstr+xml" }, ]);
+    </script>
     
     </head>
     <body>
