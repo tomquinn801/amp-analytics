@@ -25,6 +25,7 @@
         <!--Add the amp-appInsights plugin script -->
         <script src="amp-appInsights.min.js"></script>
         <script type="text/javascript">
+            var pluginVersion = 0.1;
             var myOptions = {
                 "nativeControlsForTouch": false,
                 autoplay: true,
@@ -34,16 +35,26 @@
                 plugins: {
                     appInsights: {
                         //add additional plugin options here
-                        'debug': true
+                        'debug': true,
+                        'StreamId': "Learn TV",
+                        'PluginVersion': pluginVersion,
+                        'ProtectionType': 'none',
+                        'isLive': true
+                    
                     }
                 }
             };
+
+            // 'PlayerVersion': player.getAmpVersion() || "unknown",
+            // 'PlaybackTech': player.currentTechName() || "unknown",
+            // 'MimeType': player.currentType() || "unknown",
+
             var myPlayer = amp("azuremediaplayer", myOptions);
             myPlayer.src([{ src: "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest", type: "application/vnd.ms-sstr+xml" }, ]);
         </script>
         <h1>AMP Player with App Insights Analytics</h1>
         <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="640" height="400" poster="poster.jpg" data-setup='{"techOrder": ["azureHtml5JS", "flashSS", "html5FairPlayHLS","silverlightSS", "html5"], "nativeControlsForTouch": false}'>
-            <source src="https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest" type="application/vnd.ms-sstr+xml" />
+            <!--source src="https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest" type="application/vnd.ms-sstr+xml" /-->
             <p class="amp-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
             </p>
